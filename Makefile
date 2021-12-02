@@ -6,7 +6,7 @@
 #    By: nabihali <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 04:19:55 by nabihali          #+#    #+#              #
-#    Updated: 2021/12/02 17:03:30 by nabihali         ###   ########.fr        #
+#    Updated: 2021/12/02 19:42:26 by nabihali         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -27,6 +27,7 @@ SRC			=	initialise.c \
 				ft_free.c	\
 				ft_realloc.c \
 				ft_print_str.c \
+				print_mem.c \
 				heap_func.c \
 				spot_locator.c \
 				block_func.c
@@ -48,7 +49,7 @@ $(NAME):	$(OBJ)
 			$(CC) $(OBJ) $(CFLAG) $(FLAG_LIB) $(NAME)$(HOST).so
 
 %.o:		%.c
-			$(CC) $(FLAG_SRC) $^ -o $@
+			$(CC) $(FLAG_SRC) $(CFLAG) $^ -o $@
 
 exec:		$(OBJ) $(OBJ_EXEC)
 			$(CC) $(OBJ) $(OBJ_EXEC) -o exec_test

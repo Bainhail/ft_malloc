@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 15:39:16 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 13:16:27 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:50:28 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 static int			is_start_free(void* tmp, t_heap *node, size_t size)
 {
-	if (node->block_start < tmp
-		&& (tmp - node->block_start) >= (size - sizeof(t_block)))
-		return (RET_TRUE);
+	size_t		res;
+
+	if (node->block_start < tmp)
+	{
+		res = tmp - node->block_start;
+		if (res >= (size - sizeof(t_block)))
+			return (RET_TRUE);
+	}
 	return (RET_FALSE);
 }
 
@@ -24,11 +29,16 @@ static int			is_between_free(void* tmp, t_block *end, size_t size)
 {
 	t_block		*t_cpy;
 	t_block		*res;
+	size_t		dist;
 
 	t_cpy = tmp;
 	res = tmp + sizeof(t_block) + t_cpy->size;
-	if (res != end && (void*)end - (void*)res >= size + sizeof(t_block))
-		return (RET_TRUE);
+	if (res != end)
+	{
+		dist = (void*)end - (void*)res;
+		if (dist >= size + sizeof(t_block))
+			return (RET_TRUE);
+	}
 	return (RET_FALSE);
 }
 
@@ -36,9 +46,9 @@ static int			is_heap_end_free(void *tmp, t_heap *node, size_t size)
 {
 	size_t		res;
 
-	if ((((void*)node + node->size_max - sizeof(t_heap))
-		 - (tmp + sizeof(t_block) + ((t_block*)tmp)->size))
-		>= (size + sizeof(t_block)))
+	res = ((void*)node + node->size_max - sizeof(t_heap))\
+		- (tmp + sizeof(t_block) + ((t_block*)tmp)->size);
+	if (res >= (size + sizeof(t_block)))
 		return (RET_TRUE);
 	return (RET_FALSE);
 }

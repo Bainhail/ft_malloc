@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 03:49:15 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 16:59:43 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:44:17 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ void				*pMalloc(size_t size)
 		addr = h_insert_node(h_new_node(cat, &size));
 	if (addr != NULL)
 	{
-		ft_putstr("CALL INSERT BLOCK --> ");
-		ft_putnbr(cat);
-		ft_putchar('\n');
 		ptr = insert_block(addr, size);
 		ptr = ptr + sizeof(t_block);
 	}

@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 14:54:13 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 16:58:43 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:26:19 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ __attribute__ ((section ("__DATA,__interpose"))) = { (const void*)(unsigned long
 
 # define B2 "01"
 # define B8 "01234567"
+# define B10 "0123456789"
 # define B16 "0123456789ABCDEF"
 
-# define TINY_HEAP_SIZE (4 * getpagesize())
-# define SMALL_HEAP_SIZE (8 * getpagesize())
+# define TINY_HEAP_SIZE (8 * getpagesize())
+# define SMALL_HEAP_SIZE (16 * getpagesize())
 # define TINY_BLOCK (TINY_HEAP_SIZE / 128)
 # define SMALL_BLOCK (SMALL_HEAP_SIZE / 128)
 
@@ -93,7 +94,9 @@ void				ft_putstr(char *s);
 void				ft_putnbr(int n);
 void				ft_putnbr_base(size_t nb, char *base);
 
-size_t pMalloc_size(const void *ptr);// a coder correctement
+void				show_alloc_mem();
+
+size_t				pMalloc_size(const void *ptr);// a coder correctement
 
 // Voir si on les ajoute ou pas
 void *pReallocf(void *ptr, size_t size);

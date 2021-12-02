@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 04:07:47 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 16:59:24 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:44:38 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ void		pFree(void *ptr)
 			while (test != NULL && (void*)test != (ptr - sizeof(t_block)))
 				test = test->next;
 			if ((void*)test == (ptr - sizeof(t_block)))
-			{
-				ft_putstr("FREE Reel\n");
 				remove_block(tmp, (ptr - sizeof(t_block)));
-			}
 		}
 	}
 }

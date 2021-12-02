@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 20:53:21 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 14:27:12 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:45:38 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,11 @@
 */
 static size_t		get_heap_size(unsigned int *category, size_t *size)
 {
-//	size_t		mult;
 	if (*category & CAT_TINY && *size <= (TINY_BLOCK - sizeof(t_block)))
 		return (TINY_HEAP_SIZE);
 	else if (*category & CAT_SMALL  && *size <= (SMALL_BLOCK - sizeof(t_block)))
 		return (SMALL_HEAP_SIZE);
 	*category = CAT_LARGE;
-//	mult = size / getpagesize();
-//	while (mult * getpagesize() < size)
-//		mult++;
-//	size = mult * getpagesize();
 	if ((*size + sizeof(t_block)) % 16 != 0)
 		*size += (16 - ((*size + sizeof(t_block)) % 16));
 	return (*size + sizeof(t_block));
@@ -103,22 +98,12 @@ t_heap				*h_insert_node(t_heap *new_node)
 	{
 		if ((new_node->category < tmp->category)
 			|| ((new_node->category == tmp->category) && (new_node < tmp)))
-		{
-			ft_putstr("INSERT HEAP BEFORE --> ");
-			ft_putnbr(new_node->category);
-			ft_putchar('\n');
 			flg = 0;
-		}
 		while (tmp->next != NULL && flg == -1)
 		{
 			if ((tmp->next != NULL && (new_node->category < tmp->next->category))
 				|| ((new_node->category == tmp->next->category) && (new_node < tmp->next)))
-			{
-				ft_putstr("INSERT HEAP AFTER --> ");
-				ft_putnbr(new_node->category);
-				ft_putchar('\n');
 				flg = 1;
-			}
 			else
 				tmp = tmp->next;
 		}
@@ -167,7 +152,6 @@ void				h_remove_node(t_heap *to_erase)
 {
 	t_heap		*tmp;
 
-	ft_putstr("REMOVE HEAP\n");
 	tmp = heap_ancor;
 	if (tmp != NULL && to_erase != NULL && to_erase->nb_block == 0)
 	{

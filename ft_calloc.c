@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 17:58:28 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 17:00:27 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:44:26 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ void				*pCalloc(size_t count, size_t size)
 
 	ptr = NULL;
 	mult = count * size;
-	ft_putstr("CALLOC\n");
 	if ((ptr = pMalloc(mult)) != NULL)
 		ft_bzero(ptr, mult);
-	ft_putstr("CALLOC FIN\n");
 	return (ptr);
 }
 
