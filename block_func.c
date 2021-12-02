@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:16:26 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 02:35:27 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 14:27:40 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_block				*insert_block(t_heap *node, size_t size)
 		if ((tmp = check_for_spot(node, size, &insert)) == NULL)
 		{
 			insert = NULL;
-			node = h_insert_node(h_new_node(CAT_TINY, size));
+			node = h_insert_node(h_new_node(CAT_TINY, &size));
 			tmp = check_for_spot(node, size, &insert);
 		}
 		new_block(&node, &insert, &tmp, size);

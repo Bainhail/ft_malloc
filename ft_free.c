@@ -6,19 +6,9 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 04:07:47 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 01:14:59 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:59:24 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define _GNU_SOURCE
-#include <dlfcn.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-
-#define DYLD_INTERPOSE_FREE(_replacment,_replacee) \
-__attribute__((used)) static struct{ const void* replacment; const void* replacee; } _interpose_##_replacee \
-__attribute__ ((section ("__DATA,__interpose"))) = { (const void*)(unsigned long)&_replacment, (const void*)(unsigned long)&_replacee };
 
 #include "ft_stdlib.h"
 
@@ -38,9 +28,12 @@ void		pFree(void *ptr)
 			while (test != NULL && (void*)test != (ptr - sizeof(t_block)))
 				test = test->next;
 			if ((void*)test == (ptr - sizeof(t_block)))
+			{
+				ft_putstr("FREE Reel\n");
 				remove_block(tmp, (ptr - sizeof(t_block)));
+			}
 		}
 	}
 }
 
-DYLD_INTERPOSE_FREE(pFree, free);
+DYLD_INTERPOSE(pFree, free);

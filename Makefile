@@ -6,7 +6,7 @@
 #    By: nabihali <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 04:19:55 by nabihali          #+#    #+#              #
-#    Updated: 2021/12/02 02:36:05 by nabihali         ###   ########.fr        #
+#    Updated: 2021/12/02 17:03:30 by nabihali         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -22,15 +22,17 @@ FLAG_SRC	=	-c -fPIC
 
 FLAG_LIB	=	-shared -o
 
-SRC			=	ft_malloc.c	\
+SRC			=	initialise.c \
+				ft_malloc.c	\
 				ft_free.c	\
 				ft_realloc.c \
-				ft_print.c \
+				ft_print_str.c \
 				heap_func.c \
 				spot_locator.c \
 				block_func.c
 
 #				ft_calloc.c \
+				side_func_malloc.c \
 
 SRC_EXEC	=	main.c
 

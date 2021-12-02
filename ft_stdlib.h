@@ -6,12 +6,22 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 14:54:13 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 02:15:55 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 16:58:43 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		__FT_STDLIB_H__
 # define	__FT_STDLIB_H__
+
+#define _GNU_SOURCE
+#include <dlfcn.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc/malloc.h>
+
+#define DYLD_INTERPOSE(_replacment,_replacee) \
+__attribute__((used)) static struct{ const void* replacment; const void* replacee; } _interpose_##_replacee \
+__attribute__ ((section ("__DATA,__interpose"))) = { (const void*)(unsigned long)&_replacment, (const void*)(unsigned long)&_replacee };
 
 # include <unistd.h>
 # include <sys/mman.h>
@@ -26,6 +36,10 @@
 # define CAT_TINY 2
 # define CAT_SMALL 4
 # define CAT_LARGE 8
+
+# define B2 "01"
+# define B8 "01234567"
+# define B16 "0123456789ABCDEF"
 
 # define TINY_HEAP_SIZE (4 * getpagesize())
 # define SMALL_HEAP_SIZE (8 * getpagesize())
@@ -57,15 +71,15 @@ struct				s_block
 // GLOBAL Variable
 t_heap				*heap_ancor;
 
-void				initializer();
+void				init_global();
 void				pFree(void *ptr);
 void				*pMalloc(size_t size);
-void				*realloc(void *ptr, size_t size);
+void				*pRealloc(void *ptr, size_t size);
 void				*pCalloc(size_t count, size_t size);
 
 t_heap				*look_for_heap(size_t cat, size_t size);
 
-t_heap				*h_new_node(unsigned int category, size_t size);
+t_heap				*h_new_node(unsigned int category, size_t *size);
 t_heap				*h_insert_node(t_heap *new_node);
 void				h_remove_node(t_heap *to_erase);
 
@@ -77,5 +91,13 @@ void				remove_block(t_heap *node, t_block *to_erase);
 void				ft_putchar(char c);
 void				ft_putstr(char *s);
 void				ft_putnbr(int n);
+void				ft_putnbr_base(size_t nb, char *base);
+
+size_t pMalloc_size(const void *ptr);// a coder correctement
+
+// Voir si on les ajoute ou pas
+void *pReallocf(void *ptr, size_t size);
+void *pValloc(size_t size);
+void *pAligned_alloc(size_t alignment, size_t size);
 
 #endif

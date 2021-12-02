@@ -6,19 +6,9 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 04:09:04 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 02:36:30 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/02 17:00:06 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define _GNU_SOURCE
-#include <dlfcn.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-
-#define DYLD_INTERPOSE_REA(_replacment,_replacee) \
-__attribute__((used)) static struct{ const void* replacment; const void* replacee; } _interpose_##_replacee \
-__attribute__ ((section ("__DATA,__interpose"))) = { (const void*)(unsigned long)&_replacment, (const void*)(unsigned long)&_replacee };
 
 #include "ft_stdlib.h"
 
@@ -91,4 +81,4 @@ void				*pRealloc(void *ptr, size_t size)
 	return (ptr);
 }
 
-DYLD_INTERPOSE_REA(pRealloc, realloc);
+DYLD_INTERPOSE(pRealloc, realloc);
