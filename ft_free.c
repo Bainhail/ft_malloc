@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 04:07:47 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/07 15:40:30 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:59:15 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void		free(void *ptr)
 	t_block	*test;
 
 	test = NULL;
+	init_global();
 	tmp = heap_ancor;
 	if (ptr != NULL && tmp != NULL)
 	{
