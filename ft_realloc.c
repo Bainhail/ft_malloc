@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 04:09:04 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 17:00:06 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:54:38 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void		*ft_memccpy(void *dst, void *src, size_t n)
 	unsigned char	*c_src;
 
 	i = 0;
+
 	c_dst = (unsigned char*)dst;
 	c_src = (unsigned char*)src;
 	while (i < n)
@@ -55,24 +56,25 @@ void				*pRealloc(void *ptr, size_t size)
 	t_block	*addr;
 
 	addr = NULL;
+	init_global();
 	tmp = heap_recovery(ptr);
 	size = (size == 0) ? 1 : size;
 	if (tmp == NULL || ptr == NULL)
-		ptr = pMalloc(size);
+		ptr = malloc(size);
 	else if (tmp != NULL && ptr != NULL)
 	{
 		if ((addr = block_recovery(ptr - sizeof(t_block), tmp)) != NULL)
 		{
 			if (addr->size >= size)
 			{
+				tmp->size_free += (addr->size - size);
 				addr->size = size;
-				tmp->size_free -= (addr->size - size);
 			}
 			else
 			{
-				ptr = pMalloc(size);
+				ptr = malloc(size);
 				ft_memccpy(ptr, (void*)addr + sizeof(t_block), addr->size);
-				pFree((void*)addr + sizeof(t_block));
+				free((void*)addr + sizeof(t_block));
 			}
 		}
 		else
@@ -80,5 +82,3 @@ void				*pRealloc(void *ptr, size_t size)
 	}
 	return (ptr);
 }
-
-DYLD_INTERPOSE(pRealloc, realloc);

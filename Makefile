@@ -6,7 +6,7 @@
 #    By: nabihali <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/18 04:19:55 by nabihali          #+#    #+#              #
-#    Updated: 2021/12/02 19:42:26 by nabihali         ###   ########.fr        #
+#    Updated: 2021/12/07 15:52:15 by nabihali         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,9 +32,6 @@ SRC			=	initialise.c \
 				spot_locator.c \
 				block_func.c
 
-#				ft_calloc.c \
-				side_func_malloc.c \
-
 SRC_EXEC	=	main.c
 
 OBJ			=	$(SRC:.c=.o)
@@ -50,9 +47,6 @@ $(NAME):	$(OBJ)
 
 %.o:		%.c
 			$(CC) $(FLAG_SRC) $(CFLAG) $^ -o $@
-
-exec:		$(OBJ) $(OBJ_EXEC)
-			$(CC) $(OBJ) $(OBJ_EXEC) -o exec_test
 
 clean:
 			rm -f $(OBJ) $(OBJ_EXEC)

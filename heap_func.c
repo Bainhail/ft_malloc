@@ -6,7 +6,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 20:53:21 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 17:45:38 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:01:12 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_heap				*h_new_node(unsigned int category, size_t *size)
 /*
 ** Insert le noeud avant ou apres le maillon de chaine
 ** Depend du flag envoyer en parametre.
-*/
+x*/
 void				h_insert_in_chain(t_heap **node, t_heap **chain, int flg)
 {
 	if (flg == 0)
@@ -73,7 +73,7 @@ void				h_insert_in_chain(t_heap **node, t_heap **chain, int flg)
 		(*node)->prev = (*chain)->prev;
 		(*chain)->prev = *node;
 	}
-	else if (flg == 1)
+	else
 	{
 		(*node)->next = (*chain)->next;
 		(*chain)->next = *node;

@@ -6,21 +6,23 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 04:07:47 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 17:44:38 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:40:30 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stdlib.h"
 
-void		pFree(void *ptr)
+void		free(void *ptr)
 {
 	t_heap	*tmp;
 	t_block	*test;
 
+	test = NULL;
 	tmp = heap_ancor;
 	if (ptr != NULL && tmp != NULL)
 	{
-		while (tmp != NULL && (void*)tmp < (void*)ptr && ptr > ((tmp->block_start + tmp->size_max)))
+		while (tmp != NULL && (void*)tmp < (void*)ptr
+			   && ptr > ((tmp->block_start + tmp->size_max)))
 			tmp = tmp->next;
 		if (tmp != NULL)
 		{
@@ -32,5 +34,3 @@ void		pFree(void *ptr)
 		}
 	}
 }
-
-DYLD_INTERPOSE(pFree, free);

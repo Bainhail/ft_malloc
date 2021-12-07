@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,7 +7,7 @@
 /*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 03:49:15 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 17:44:17 by nabihali         ###   ########.fr       */
+/*   Updated: 2021/12/07 15:42:55 by nabihali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +40,7 @@ t_heap				*look_for_heap(size_t cat, size_t size)
 	return (tmp);
 }
 
-void				*pMalloc(size_t size)
+void				*malloc(size_t size)
 {
 	void	*ptr;
 	t_heap	*addr;
@@ -57,5 +58,3 @@ void				*pMalloc(size_t size)
 	}
 	return (ptr);
 }
-
-DYLD_INTERPOSE(pMalloc, malloc);
