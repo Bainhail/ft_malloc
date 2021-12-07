@@ -12,6 +12,6 @@
 # **************************************************************************** #
 
 export DYLD_LIBRARY_PATH=.
-export DYLD_INSERT_LIBRARIES=libft_malloc_macbook-pro-de-nabih.home.so
+export DYLD_INSERT_LIBRARIES=libft_malloc_e1r6p6.42.fr.so
 export DYLD_FORCE_FLAT_NAMESPACE=1
 $@

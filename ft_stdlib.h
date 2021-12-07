@@ -32,58 +32,58 @@
 # define B10 "0123456789"
 # define B16 "0123456789ABCDEF"
 
-# define TINY_HEAP_SIZE (4 * getpagesize())
-# define SMALL_HEAP_SIZE (16 * getpagesize())
+# define TINY_HEAP_SIZE (16 * getpagesize())
+# define SMALL_HEAP_SIZE (34 * getpagesize())
 # define TINY_BLOCK (TINY_HEAP_SIZE / 128)
 # define SMALL_BLOCK (SMALL_HEAP_SIZE / 128)
 
-typedef struct		s_heap		t_heap;
-typedef struct		s_block		t_block;
+typedef struct		s_heap	t_heap;
+typedef struct		s_block	t_block;
 
-struct				s_heap
+struct			s_heap
 {
 	unsigned int	category;
-	size_t			size_max;
-	size_t			size_free;
-	size_t			nb_block;
-	void			*block_start;
-	t_block			*block_first;
-	t_heap			*next;
-	t_heap			*prev;
+	size_t		size_max;
+	size_t		size_free;
+	size_t		nb_block;
+	void		*block_start;
+	t_block		*block_first;
+	t_heap		*next;
+	t_heap		*prev;
 };
 
-struct				s_block
+struct			s_block
 {
-	size_t			size;
-	void			*heap_start;
-	t_block			*next;
+	size_t		size;
+	void		*heap_start;
+	t_block		*next;
 };
 
 // GLOBAL Variable
-t_heap				*heap_ancor;
+t_heap			*heap_ancor;
 
-void				init_global();
-void				free(void *ptr);
-void				*malloc(size_t size);
-void				*realloc(void *ptr, size_t size);
+void			init_global();
+void			free(void *ptr);
+void			*malloc(size_t size);
+void			*realloc(void *ptr, size_t size);
 
-t_heap				*look_for_heap(size_t cat, size_t size);
+t_heap			*look_for_heap(size_t cat, size_t size);
 
-t_heap				*h_new_node(unsigned int category, size_t *size);
-t_heap				*h_insert_node(t_heap *new_node);
-void				h_remove_node(t_heap *to_erase);
+t_heap			*h_new_node(unsigned int category, size_t *size);
+t_heap			*h_insert_node(t_heap *new_node);
+void			h_remove_node(t_heap *to_erase);
 
-void				*check_for_spot(t_heap **node, size_t size, t_block **insert);
+void			*check_for_spot(t_heap **node, size_t size, t_block **insert);
 
-t_block				*insert_block(t_heap *node, size_t size);
-void				remove_block(t_heap *node, t_block *to_erase);
+t_block			*insert_block(t_heap *node, size_t size);
+void			remove_block(t_heap *node, t_block *to_erase);
 
-void				ft_putchar(char c);
-void				ft_putstr(char *s);
-void				ft_putnbr(int n);
-void				ft_putnbr_base(size_t nb, char *base);
-void				ft_bzero(void *s, size_t n);
+void			ft_putchar(char c);
+void			ft_putstr(char *s);
+void			ft_putnbr(int n);
+void			ft_putnbr_base(size_t nb, char *base);
+void			ft_bzero(void *s, size_t n);
 
-void				show_alloc_mem();
+void			show_alloc_mem();
 
 #endif

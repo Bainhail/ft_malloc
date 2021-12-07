@@ -44,7 +44,6 @@ static void			print_node(t_heap *node, size_t *nb)
 		ft_putstr("No block allocated\n");
 	while (tmp != NULL)
 	{
-//		*nb += sizeof(t_block);
 		print_block(tmp, nb);
 		tmp = tmp->next;
 	}
@@ -52,24 +51,22 @@ static void			print_node(t_heap *node, size_t *nb)
 
 void				show_alloc_mem()
 {
-	size_t		cat;
-	t_heap		*ptr;
-	size_t		nb_oct;
+  size_t		cat;
+  t_heap		*ptr;
+  size_t		nb_oct;
 
-	cat = CAT_TINY;
-	ptr = heap_ancor;
-	nb_oct = 0;
-	while (ptr != NULL)
-	{
-//		nb_oct += sizeof(t_heap);
-		if (ptr->category == CAT_LARGE)
-			print_node(ptr, &nb_oct);
-		ptr = ptr->next;
-	}
-	if (nb_oct > 0)
-	{
-		ft_putstr("Total : ");
-		ft_putnbr_base(nb_oct, B10);
-		ft_putstr(" octet(s)\n");
-	}
+  cat = CAT_TINY;
+  ptr = heap_ancor;
+  nb_oct = 0;
+  while (ptr != NULL)
+    {
+      print_node(ptr, &nb_oct);
+      ptr = ptr->next;
+    }
+  if (nb_oct > 0)
+    {
+      ft_putstr("Total : ");
+      ft_putnbr_base(nb_oct, B10);
+      ft_putstr(" octet(s)\n");
+    }
 }

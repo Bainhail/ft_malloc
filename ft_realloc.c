@@ -50,7 +50,7 @@ static void		*ft_memccpy(void *dst, void *src, size_t n)
 	return (NULL);
 }
 
-void				*pRealloc(void *ptr, size_t size)
+void				*realloc(void *ptr, size_t size)
 {
 	t_heap	*tmp;
 	t_block	*addr;
