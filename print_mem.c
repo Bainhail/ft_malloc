@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   print_mem.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 17:07:50 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/04 20:40:34 by nabihali         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_stdlib.h"
 
-static void			print_block(t_block *block, size_t *nb)
+static void print_block(t_block *block, size_t *nb)
 {
 	ft_putstr("0x");
 	ft_putnbr_base((size_t)block, B16);
@@ -24,9 +12,9 @@ static void			print_block(t_block *block, size_t *nb)
 	*nb += block->size;
 }
 
-static void			print_node(t_heap *node, size_t *nb)
+static void print_node(t_heap *node, size_t *nb)
 {
-	t_block		*tmp;
+	t_block *tmp;
 
 	tmp = node->block_first;
 	if (node->category == CAT_TINY)
@@ -49,24 +37,23 @@ static void			print_node(t_heap *node, size_t *nb)
 	}
 }
 
-void				show_alloc_mem()
+void show_alloc_mem()
 {
-  size_t		cat;
-  t_heap		*ptr;
-  size_t		nb_oct;
+	t_heap *ptr;
+	size_t nb_oct;
 
-  cat = CAT_TINY;
-  ptr = heap_ancor;
-  nb_oct = 0;
-  while (ptr != NULL)
-    {
-      print_node(ptr, &nb_oct);
-      ptr = ptr->next;
-    }
-  if (nb_oct > 0)
-    {
-      ft_putstr("Total : ");
-      ft_putnbr_base(nb_oct, B10);
-      ft_putstr(" octet(s)\n");
-    }
+	init_global();
+	ptr = heap_ancor;
+	nb_oct = 0;
+	while (ptr != NULL)
+	{
+		print_node(ptr, &nb_oct);
+		ptr = ptr->next;
+	}
+	if (nb_oct > 0)
+	{
+		ft_putstr("Total : ");
+		ft_putnbr_base(nb_oct, B10);
+		ft_putstr(" octet(s)\n");
+	}
 }

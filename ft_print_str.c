@@ -1,25 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nabihali <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 13:43:45 by nabihali          #+#    #+#             */
-/*   Updated: 2021/12/02 16:52:52 by nabihali         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_stdlib.h"
 
-void			ft_putchar(char c)
+void ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void			ft_putstr(char *s)
+void ft_putstr(char *s)
 {
-	int		i;
+	int i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -29,10 +17,10 @@ void			ft_putstr(char *s)
 	}
 }
 
-void		ft_putnbr(int n)
+void ft_putnbr(int n)
 {
-	int		cp;
-	int		mod;
+	int cp;
+	int mod;
 
 	mod = 1;
 	if (n >= 0)
@@ -53,10 +41,10 @@ void		ft_putnbr(int n)
 	}
 }
 
-static size_t	check_base(char *base)
+static size_t check_base(char *base)
 {
-	size_t    i;
-	size_t    z;
+	size_t i;
+	size_t z;
 
 	i = 0;
 	z = 0;
@@ -80,11 +68,11 @@ static size_t	check_base(char *base)
 	return (1);
 }
 
-void		ft_putnbr_base(size_t nb, char *base)
+void ft_putnbr_base(size_t nb, char *base)
 {
-	size_t    nbr[100];
-	size_t    size_base;
-	int	    i;
+	size_t nbr[100];
+	size_t size_base;
+	int i;
 
 	i = 0;
 	size_base = 0;
